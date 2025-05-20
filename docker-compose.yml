@@ -5,29 +5,29 @@ services:
     image: node:18
     working_dir: /app
     volumes:
-      - .:/app             # Mount the project folder into the container
-      - /app/node_modules  # Prevent node_modules on host from conflicting
+      - .:/app
+      - /app/node_modules
     ports:
-      - "3000:3000"        # Expose Next.js app on localhost:3000
+      - "3000:3000"
     environment:
-      - NODE_ENV=${NODE_ENV}
-      - DATABASE_URL=${DATABASE_URL}
-    command: sh -c "npm install && npm run dev"  # Install dependencies and start dev server
+      - NODE_ENV=${NODE_ENV_PROD}
+      - DATABASE_URL=${DATABASE_URL_PROD}
+    command: sh -c "npm install && npm run build && npm start"
     restart: unless-stopped
     depends_on:
-      - db                 # Start database container before the web app
+      - db
 
   db:
     image: postgres:15
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER_PROD}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD_PROD}
+      - POSTGRES_DB=${POSTGRES_DB_PROD}
     ports:
-      - "5432:5432"        # Expose PostgreSQL on localhost:5432
+      - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data  # Persist database data
+      - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
 volumes:
-  postgres_data:  # Named volume for PostgreSQL data
+  postgres_data:
