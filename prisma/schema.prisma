@@ -1,0 +1,36 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "./generated"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Product {
+    id            Int         @id @default(autoincrement())
+    serialNumber  Int
+    isNew         Boolean
+    photo         String? // nullable
+    title         String
+    type          ProductType
+    specification String
+    guarantee     Json // { start: string; end: string } 
+    price         Json // { value: number; symbol: string; isDefault: boolean }[]
+    order         Int
+    date          DateTime
+    orders        Order[]     @relation("OrderProducts")
+}
+
+enum ProductType {
+    Monitors
+}
+
+model Order {
+    id          Int       @id @default(autoincrement())
+    title       String
+    date        DateTime
+    description String
+    products    Product[] @relation("OrderProducts")
+}
