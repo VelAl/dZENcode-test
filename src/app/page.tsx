@@ -1,7 +1,7 @@
 const Home = async () => {
   return (
-    <div>
-      <main>here</main>
+    <div className="d-flex justify-content-center align-items-center w-100 h-100">
+      <h1>dZENcode</h1>
     </div>
   );
 };
