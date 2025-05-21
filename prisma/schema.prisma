@@ -19,7 +19,7 @@ model Product {
     guarantee     Json // { start: string; end: string } 
     price         Json // { value: number; symbol: string; isDefault: boolean }[]
     order         Int
-    date          DateTime
+    date          DateTime    @default(now())
     orders        Order[]     @relation("OrderProducts")
 }
 
@@ -30,7 +30,7 @@ enum ProductType {
 model Order {
     id          Int       @id @default(autoincrement())
     title       String
-    date        DateTime
+    date        DateTime  @default(now())
     description String
     products    Product[] @relation("OrderProducts")
 }
