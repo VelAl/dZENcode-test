@@ -11,4 +11,5 @@
 .main-content__body {
   padding: 1rem;
   box-shadow: 15px 12px 18px -7px rgba(0, 0, 0, 0.2) inset;
+  background-color: rgb(249, 247, 247);
 }

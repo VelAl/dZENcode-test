@@ -9,13 +9,13 @@ export type T_Product = {
   guarantee: { start: string; end: string };
   price: { value: number; symbol: string; isDefault: boolean }[];
   order: number;
-  date: string;
+  date: string | Date;
 };
 
 export type T_Order = {
   id: number;
   title: string;
-  date: string;
+  date: string | Date;
   description: string;
   products: T_Product[];
 };

@@ -18,3 +18,29 @@ export const getFormatedDate = () => {
 
   return formatted as T_DateString;
 };
+
+export const formatDateToUS = (date: string): string => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  };
+
+  const formatter = new Intl.DateTimeFormat("en-US", options);
+  return formatter.format(new Date(date));
+};
+
+export const formatPrice = (
+  amount: number,
+  locale: "uk-UA" | "en-US", // Intl.LocalesArgument,
+  currency: "UAH" | "USD" // Intl.NumberFormatOptions["currency"]
+): string => {
+  const formatter = new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
+  return formatter.format(amount);
+};
