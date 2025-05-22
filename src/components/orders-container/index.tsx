@@ -4,6 +4,7 @@ import { T_OrderWithPrice } from "@/app-types";
 import { useState } from "react";
 import { Order } from "../order";
 import { OrderProductsCard } from "../order-products-card";
+import styles from "./style.module.css";
 
 type T_Props = {
   ordersWithPrice: T_OrderWithPrice[];
@@ -14,9 +15,18 @@ export const OrdersContainer = ({ ordersWithPrice }: T_Props) => {
 
   return (
     <div className="container">
-      <div className="row">
-        <div className={activeOrderId ? "col-4" : "col-12"}>
-          <div className="left-container">
+      <div className="row flex-nowrap">
+        <div
+          className={`
+            ${styles["orders-container__column"]}
+            ${
+              activeOrderId
+                ? styles["orders-container__column--left-small"]
+                : styles["orders-container__column--left-full"]
+            }
+          `}
+        >
+          <div>
             {ordersWithPrice.map((order) => (
               <Order
                 key={order.id}
@@ -28,14 +38,24 @@ export const OrdersContainer = ({ ordersWithPrice }: T_Props) => {
           </div>
         </div>
 
-        {activeOrderId && (
-          <div className="col-8">
+        <div
+          className={`
+            ${styles["orders-container__column"]}
+            ${styles["orders-container__column--right-panel"]}
+            ${
+              activeOrderId
+                ? styles["orders-container__column--right-visible"]
+                : styles["orders-container__column--right-hidden"]
+            }
+          `}
+        >
+          {activeOrderId && (
             <OrderProductsCard
               setActiveOrderId={setActiveOrderId}
               order={ordersWithPrice.find(({ id }) => id === activeOrderId)!}
             />
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
