@@ -1,3 +1,5 @@
+import { T_Order, T_Price } from "./app-types";
+
 export type T_DateString = `${string},${string},${string},${string}`;
 
 export const getFormatedDate = () => {
@@ -44,3 +46,25 @@ export const formatPrice = (
 
   return formatter.format(amount);
 };
+
+export const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms));
+
+export const countTotalOrderPrice = (order: T_Order) => {
+  const res = order.products.reduce((acc, { price }) => {
+    price.forEach((el) => {
+      if (acc[el.symbol]) {
+        acc[el.symbol].value += el.value;
+      } else {
+        acc[el.symbol] = { ...el };
+      }
+    });
+    return acc;
+  }, {} as { [curencySymbl: string]: T_Price });
+
+  return Object.values(res);
+};
+
+// Convert prisma object into a regular JS object
+export function convertToPlainObject<T>(value: T): T {
+  return JSON.parse(JSON.stringify(value));
+}

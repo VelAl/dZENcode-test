@@ -63,18 +63,5 @@
 }
 
 .product__price {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.product__price-dollars {
-  font-size: 10px;
-  color: #979696;
-}
-
-.product__delete_icn {
-  transition: transform 0.2s ease-in-out;
-}
-.product__delete_icn:hover {
-  transform: scale(1.4);
+  width: 100px;
 }
