@@ -1,0 +1,26 @@
+.nav__avatar-indicator {
+  width: 1.7rem;
+  height: 1.7rem;
+  background-color: white;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.nav__link {
+  text-decoration: none;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.nav__link:hover {
+  background-color: lightgreen;
+}
+
+.nav__link_active {
+  pointer-events: none;
+  color: green;
+}
