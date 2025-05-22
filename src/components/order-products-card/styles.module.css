@@ -1,0 +1,65 @@
+.card {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: white;
+  position: relative;
+}
+
+.card__close-btn {
+  color: rgb(60, 178, 43);
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  position: absolute;
+  top: -12px;
+  right: -12px;
+}
+
+.card__table-row {
+  border-top: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.card__table-row:hover {
+  box-shadow: 4px 4px 18px rgba(0, 0, 0, 0.15);
+}
+
+.card__table-cell {
+  padding: 10px;
+}
+
+.card__circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgb(60, 178, 43);
+}
+
+.unactive {
+  background-color: rgb(203, 201, 201);
+}
+
+.card__title {
+  font-size: 14px;
+}
+
+.card__title-number {
+  color: lightgray;
+  font-size: 14px;
+}
+
+.card__status {
+  color: rgb(60, 178, 43);
+  font-size: 14px;
+}
+
+.card__status-unactive {
+  color: rgb(203, 201, 201);
+}
+
+.card__buttonholder {
+  display: flex;
+  justify-content: end;
+}

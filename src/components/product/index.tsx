@@ -1,8 +1,9 @@
 import { T_Product } from "@/app-types";
 import "./style.css";
 import Image from "next/image";
-import { formatDateToUS, formatPrice } from "@/utils";
-import deleteIcn from "../../../public/delete-bin-green.svg";
+import { formatDateToUS } from "@/utils";
+import { Price } from "../price";
+import { DeleteBtn } from "../delete-btn";
 
 type T_Props = { product: T_Product };
 
@@ -46,10 +47,7 @@ export const Product = ({
       </div>
 
       <div className="product__price">
-        <div className="product__price-dollars">
-          {formatPrice(price[0].value, "en-US", "USD")}
-        </div>
-        <div>{formatPrice(price[1].value, "uk-UA", "UAH")}</div>
+        <Price price={price} />
       </div>
 
       <div className="ms-3">
@@ -57,15 +55,7 @@ export const Product = ({
       </div>
 
       <div className="ms-3">
-        <button type="button" className="btn btn-light">
-          <Image
-            src={deleteIcn}
-            alt={"deleet"}
-            width={20}
-            height={20}
-            className="product__delete_icn"
-          />
-        </button>
+        <DeleteBtn />
       </div>
     </div>
   );

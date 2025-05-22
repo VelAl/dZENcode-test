@@ -1,0 +1,9 @@
+.price {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.price__dollars {
+  font-size: 10px;
+  color: #979696;
+}
