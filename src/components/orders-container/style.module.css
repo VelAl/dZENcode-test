@@ -1,0 +1,26 @@
+.orders-container__column {
+  transition: width 0.4s ease;
+}
+
+.orders-container__column--left-full {
+  width: 100%;
+}
+
+.orders-container__column--left-small {
+  width: 33.3333%;
+}
+
+.orders-container__column--right-panel {
+  transition: width 0.4s ease, opacity 0.3s ease;
+}
+
+.orders-container__column--right-hidden {
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.orders-container__column--right-visible {
+  width: 66.6666%;
+  opacity: 1;
+}
