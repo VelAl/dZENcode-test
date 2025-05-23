@@ -5,7 +5,8 @@ import { useState } from "react";
 import { Order } from "../order";
 import { OrderProductsCard } from "../order-products-card";
 import styles from "./style.module.css";
-import { AppModal } from "../app-modal";
+import { AppDialog } from "../app-dialog";
+import { DeleteOrderModal } from "../delete-order-modal";
 
 type T_Props = {
   ordersWithPrice: T_OrderWithPrice[];
@@ -13,7 +14,9 @@ type T_Props = {
 
 export const OrdersContainer = ({ ordersWithPrice }: T_Props) => {
   const [activeOrderId, setActiveOrderId] = useState<number | null>(null);
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [orderTodelete, setOrderToDelete] = useState<T_OrderWithPrice | false>(
+    false
+  );
 
   return (
     <div className="container">
@@ -35,6 +38,7 @@ export const OrdersContainer = ({ ordersWithPrice }: T_Props) => {
                 order={order}
                 activeOrderID={activeOrderId}
                 setActiveOrderId={setActiveOrderId}
+                setOrderToDelete={setOrderToDelete}
               />
             ))}
           </div>
@@ -60,7 +64,12 @@ export const OrdersContainer = ({ ordersWithPrice }: T_Props) => {
         </div>
       </div>
 
-      <AppModal isOpen={isOpenModal} onOpenChange={setIsOpenModal}></AppModal>
+      <AppDialog isOpen={!!orderTodelete} onOpenChange={setOrderToDelete}>
+        <DeleteOrderModal
+          closeModal={setOrderToDelete}
+          order={orderTodelete as T_OrderWithPrice}
+        />
+      </AppDialog>
     </div>
   );
 };

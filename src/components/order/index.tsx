@@ -10,12 +10,15 @@ type T_Props = {
   order: T_OrderWithPrice;
   activeOrderID: number | null;
   setActiveOrderId: Dispatch<SetStateAction<number | null>>;
+  setOrderToDelete: Dispatch<SetStateAction<T_OrderWithPrice | false>>;
 };
 
 export const Order = ({
+  order,
   order: { title, products, date, id, price },
   activeOrderID,
   setActiveOrderId,
+  setOrderToDelete,
 }: T_Props) => {
   return (
     <div className="order__item">
@@ -45,7 +48,7 @@ export const Order = ({
             <Price price={price} />
           </div>
 
-          <DeleteBtn />
+          <DeleteBtn onClick={() => setOrderToDelete(order)} />
         </>
       )}
 
