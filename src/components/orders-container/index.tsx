@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Order } from "../order";
 import { OrderProductsCard } from "../order-products-card";
 import styles from "./style.module.css";
+import { AppModal } from "../app-modal";
 
 type T_Props = {
   ordersWithPrice: T_OrderWithPrice[];
@@ -12,6 +13,7 @@ type T_Props = {
 
 export const OrdersContainer = ({ ordersWithPrice }: T_Props) => {
   const [activeOrderId, setActiveOrderId] = useState<number | null>(null);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   return (
     <div className="container">
@@ -57,6 +59,8 @@ export const OrdersContainer = ({ ordersWithPrice }: T_Props) => {
           )}
         </div>
       </div>
+
+      <AppModal isOpen={isOpenModal} onOpenChange={setIsOpenModal}></AppModal>
     </div>
   );
 };
