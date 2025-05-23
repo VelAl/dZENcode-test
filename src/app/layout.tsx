@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { MainContentWrapper, MainLayoutHeader } from "components";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,8 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <MainLayoutHeader />
         <MainContentWrapper>{children}</MainContentWrapper>
+
+        <Toaster richColors duration={4000}/>
       </body>
     </html>
   );

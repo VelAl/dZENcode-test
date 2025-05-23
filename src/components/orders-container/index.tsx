@@ -66,7 +66,7 @@ export const OrdersContainer = ({ ordersWithPrice }: T_Props) => {
 
       <AppDialog isOpen={!!orderTodelete} onOpenChange={setOrderToDelete}>
         <DeleteOrderModal
-          closeModal={setOrderToDelete}
+          setOpenModal={setOrderToDelete}
           order={orderTodelete as T_OrderWithPrice}
         />
       </AppDialog>
