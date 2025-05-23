@@ -4,10 +4,10 @@ import styles from "./style.module.css";
 
 type T_Props = {
   isOpen: boolean;
-  onOpenChange: (isOpen: boolean) => void;
+  onOpenChange: (isOpen: false) => void;
 } & PropsWithChildren;
 
-export const AppModal = ({ isOpen, onOpenChange, children }: T_Props) => {
+export const AppDialog = ({ isOpen, onOpenChange, children }: T_Props) => {
   return (
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
       <Dialog.Portal>
@@ -15,7 +15,7 @@ export const AppModal = ({ isOpen, onOpenChange, children }: T_Props) => {
           className={`modal-backdrop fade show ${styles.modal__overlay}`}
         />
         <Dialog.Content
-          className={`bg-white shadow position-fixed ${styles.modal__content}`}
+          className={`shadow position-fixed ${styles.modal__content}`}
         >
           <Dialog.Title className="p-0 m-0"></Dialog.Title>
           <Dialog.Description className="p-0 m-0" />

@@ -1,0 +1,25 @@
+.modal {
+  border-radius: 4px;
+  background-color: white;
+  width: 400px;
+  overflow: hidden;
+}
+
+.modal__title {
+    padding: 24px 16px 0 16px;
+    text-align: center;
+}
+
+.modal__body {
+    padding: 16px;
+}
+
+.modal__footer {
+  width: 100%;
+  background-color: rgb(89, 174, 89);
+  display: flex;
+  gap: 16px;
+  justify-content: end;
+  align-items: center;
+  padding: 16px 24px;
+}
