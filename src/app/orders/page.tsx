@@ -1,5 +1,5 @@
 import { getOrders_A } from "@/actions";
-import { OrdersContainer } from "@/components";
+import { CreateOrderBtn, OrdersContainer } from "@/components";
 import { sleep } from "@/utils";
 
 const OrdersPage = async () => {
@@ -17,7 +17,11 @@ const OrdersPage = async () => {
 
   return (
     <div className="p-3">
-      <h2>Ordes({data.total})</h2>
+      <div className="container d-flex justify-content-between pb-2">
+        <h2>Ordes({data.total})</h2>
+
+        <CreateOrderBtn />
+      </div>
 
       <div>
         <OrdersContainer ordersWithPrice={data.orders} />
