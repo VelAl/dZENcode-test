@@ -1,12 +1,31 @@
+"use client";
+
 import { T_Order } from "@/app-types";
 import styles from "./styles.module.css";
+import { toast } from "sonner";
+import { useTransition } from "react";
+import { deleteOrder_A } from "@/actions";
 
 type T_Props = {
   order: T_Order;
-  closeModal: (isOpen: false) => void;
+  setOpenModal: (isOpen: false) => void;
 };
 
-export const DeleteOrderModal = ({ closeModal, order }: T_Props) => {
+export const DeleteOrderModal = ({ setOpenModal, order }: T_Props) => {
+  const [isPending, startTransition] = useTransition();
+
+  const _handleDelete = () =>
+    startTransition(async () => {
+      const res = await deleteOrder_A(order.id);
+
+      if (!res.isSuccess) {
+        toast.error(res.message);
+        return;
+      }
+      toast.success(res.message);
+      setOpenModal(false);
+    });
+
   return (
     <div className={styles.modal}>
       <div className={styles.modal__title}>
@@ -17,10 +36,20 @@ export const DeleteOrderModal = ({ closeModal, order }: T_Props) => {
       </div>
 
       <div className={`bg-success ${styles.modal__footer}`}>
-        <button className="btn btn-success" onClick={() => closeModal(false)}>
+        <button className="btn btn-success" onClick={() => setOpenModal(false)}>
           Cancel
         </button>
-        <button className="btn btn-light">Delete</button>
+        <button
+          className={`btn btn-light ${styles.modal__delete}`}
+          onClick={_handleDelete}
+          disabled={isPending}
+        >
+          {isPending ? (
+            <div className="spinner-border spinner-border-sm text-success" />
+          ) : (
+            "Delete"
+          )}
+        </button>
       </div>
     </div>
   );

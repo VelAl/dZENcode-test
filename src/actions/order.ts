@@ -1,6 +1,9 @@
+"use server";
+
 import { prisma } from "prisma";
 import { T_Order } from "@/app-types";
-import { convertToPlainObject, countTotalOrderPrice } from "@/utils";
+import { convertToPlainObject, countTotalOrderPrice, sleep } from "@/utils";
+import { revalidatePath } from "next/cache";
 
 export const getOrders_A = async () => {
   try {
@@ -27,5 +30,26 @@ export const getOrders_A = async () => {
       err instanceof Error ? err.message : "Something went wrong...";
 
     return { isSuccess: false, data: err, errMessage } as const;
+  }
+};
+
+export const deleteOrder_A = async (id: number) => {
+  try {
+    await sleep(2000);
+    await prisma.order.delete({ where: { id } });
+
+    revalidatePath("/orders");
+
+    return {
+      isSuccess: true,
+      message: "The Order has been deleted successfully",
+    };
+  } catch (err) {
+    const message =
+      err instanceof Error ? err.message : `Failed to delete the Order ${id}`;
+    return {
+      isSuccess: false,
+      message,
+    };
   }
 };
