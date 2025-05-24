@@ -14,7 +14,7 @@ A simple inventory management application built with **Next.js 15**, **React 19*
 
 ## 🛠️ Getting Started
 
-### 1. Clone & Install
+### 1. Download the Project
 
 ```bash
 git clone https://github.com/VelAl/dZENcode-test.git
@@ -22,35 +22,54 @@ cd inventory-app
 npm install
 ```
 
-### 2. Run Locally
+### 2. Prerequisites
+Make sure Docker is installed and running on your machine.
 
-```bash
-npm run dev
-```
-
-### 3. Prisma Setup
-
-```bash
-npx prisma migrate dev
-npx prisma db seed
-```
-
-## 🐳 Docker
-
-Create a `.env` file with your production environment variables:
-
-```env
+### 3. Set Environment Variables .env file
 NODE_ENV_PROD=production
-DATABASE_URL_PROD=postgresql://user:password@db:5432/dbname
-POSTGRES_USER_PROD=user
-POSTGRES_PASSWORD_PROD=password
-POSTGRES_DB_PROD=dbname
-```
 
-Then run:
+DATABASE_URL_PROD=postgres://postgres:secure_prod_password@db:5432/prod_db
+
+POSTGRES_USER_PROD=postgres
+POSTGRES_PASSWORD_PROD=secure_prod_password
+POSTGRES_DB_PROD=prod_db
+
+
+### 4. Run the App
+Now simply run:
 
 ```bash
-docker compose up
+docker compose up --build
 ```
 
-The app will be available at [http://localhost:3000](http://localhost:3000)
+or
+
+```bash
+docker-compose up --build
+```
+
+
+The application will:
+ - Automatically build the project
+ - Spin up a PostgreSQL database
+ - Run all Prisma migrations
+ - Seed the database with initial data
+
+✅ Access the App
+  Once everything is up and running, the app will be available at:
+  👉 http://localhost:3000
+
+🛑 Stopping the App
+  To stop the application and remove containers, networks, and volumes created by Docker Compose:
+
+```bash
+docker compose down -v
+```
+
+or
+
+```bash
+docker-compose down -v
+```
+
+
